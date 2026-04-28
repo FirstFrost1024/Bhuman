@@ -1,0 +1,7 @@
+dr annotation
+
+vp correlation 100 0 2
+vpd correlation module:WhistleDetector:confidence red
+vpd correlation module:WhistleDetector:confidence:nn green
+vpd correlation module:WhistleDetector:confidence:pm blue
+vpd correlation module:WhistleDetector:threshold orange
