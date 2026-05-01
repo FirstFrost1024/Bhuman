@@ -7,7 +7,12 @@ option((SkillBehaviorControl)HandlePlayingOptions)
   {
     action
     {
-      if(!select_option(playingOptions))   //@playingOptions
+      if(theGameState.isSet() || theGameState.isPlaying() || theGameState.isFinished())
+      {
+        LookForward();
+        Stand({.high = false});
+      }
+      else if(!select_option(playingOptions))   //@playingOptions
         executeRequest();
     }
   }

@@ -22,9 +22,8 @@ option((SkillBehaviorControl) HandleGameState)
   {
     action
     {
-      ArmContact();
-      if(theStrategyStatus.role != PositionRole::toRole(PositionRole::goalkeeper))
-        ArmObstacleAvoidance();
+      LookForward();
+      Stand({.high = false});
     }
   }
 
@@ -61,18 +60,8 @@ option((SkillBehaviorControl) HandleGameState)
   {
     action
     {
-      if(!theLibDemo.isOneVsOneDemoActive)
-      {
-        const Vector2f targetOnField = theGameState.isPenaltyKick() ?
-                                       Vector2f(theGameState.isForOwnTeam() ?
-                                                theFieldDimensions.xPosOpponentPenaltyMark :
-                                                theFieldDimensions.xPosOwnPenaltyMark, 0.f) :
-                                       Vector2f::Zero();
-        LookAtPoint({.target = (Vector3f() << theRobotPose.inverse() * targetOnField, theBallSpecification.radius).finished()});
-      }
-      else
-        LookActive({.ignoreBall = true});
-      Stand({.high = true});
+      LookForward();
+      Stand({.high = false});
     }
   }
 
@@ -81,7 +70,7 @@ option((SkillBehaviorControl) HandleGameState)
     action
     {
       LookForward();
-      Stand();
+      Stand({.high = false});
     }
   }
 }
