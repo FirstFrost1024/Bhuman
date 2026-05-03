@@ -14,6 +14,11 @@ STREAMABLE(BehaviorParameters,
 {,
   (bool) keeperJumpingOn, /**< Use this configuration parameter to prevent keeper from jumping (and maybe hurting itself) - default == true */
 
+  (float) goalkeeperCatchMaxDistance, /**< mm; max robot-ball distance to start goalkeeper catch preparation (smaller => only when ball is closer). */
+  (float) goalkeeperCatchMinBallSpeed, /**< mm/s; min FieldBall.velocityRelative norm to start catch; 0 disables this filter (faster ball required when > 0). */
+  (Rangef) goalkeeperCatchEnterTimeUntilYAxis, /**< s until ball crosses own Y axis: [min,max] window for notCatching -> preparingCatch (smaller max => react later). */
+  (Rangef) goalkeeperCatchHoldTimeUntilYAxis, /**< s window while staying in preparingCatch (abort if prediction leaves this band). */
+
   (Angle) penaltyStrikerAngleToLeftPostOffset,  /**< (the greater the value, the closer to the center the robot will shoot) */
   (Angle) penaltyStrikerAngleToRightPostOffset,  /**< (the greater the value, the closer to the center the robot will shoot) */
   (bool) penaltyStrikerUseObstacles, /**< Whether the penalty striker should use the obstacle model to kick in the more free corner */

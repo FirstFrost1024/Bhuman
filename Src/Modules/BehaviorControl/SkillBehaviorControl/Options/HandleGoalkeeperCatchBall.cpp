@@ -8,10 +8,14 @@ option((SkillBehaviorControl) HandleGoalkeeperCatchBall)
     transition
     {
       if(theGameState.isGoalkeeper() &&
-         between<float>(theFieldInterceptBall.timeUntilIntersectsOwnYAxis, 0.3f, 3.f) &&
+         between<float>(theFieldInterceptBall.timeUntilIntersectsOwnYAxis,
+                        theBehaviorParameters.goalkeeperCatchEnterTimeUntilYAxis.min,
+                        theBehaviorParameters.goalkeeperCatchEnterTimeUntilYAxis.max) &&
          theFieldBall.ballWasSeen(100) &&
          theFieldBall.isRollingTowardsOwnGoal &&
-         theFieldBall.positionRelative.squaredNorm() < sqr(3000.f))
+         theFieldBall.positionRelative.squaredNorm() < sqr(theBehaviorParameters.goalkeeperCatchMaxDistance) &&
+         (theBehaviorParameters.goalkeeperCatchMinBallSpeed <= 0.f ||
+          theFieldBall.velocityRelative.squaredNorm() >= sqr(theBehaviorParameters.goalkeeperCatchMinBallSpeed)))
         goto preparingCatch;
     }
   }
@@ -20,10 +24,14 @@ option((SkillBehaviorControl) HandleGoalkeeperCatchBall)
   {
     transition
     {
-      if(!(between<float>(theFieldInterceptBall.timeUntilIntersectsOwnYAxis, 0.1f, 4.f) &&
+      if(!(between<float>(theFieldInterceptBall.timeUntilIntersectsOwnYAxis,
+                          theBehaviorParameters.goalkeeperCatchHoldTimeUntilYAxis.min,
+                          theBehaviorParameters.goalkeeperCatchHoldTimeUntilYAxis.max) &&
            theFieldBall.ballWasSeen(100) &&
            theFieldBall.isRollingTowardsOwnGoal &&
-           theFieldBall.positionRelative.squaredNorm() < sqr(3000.f)))
+           theFieldBall.positionRelative.squaredNorm() < sqr(theBehaviorParameters.goalkeeperCatchMaxDistance) &&
+           (theBehaviorParameters.goalkeeperCatchMinBallSpeed <= 0.f ||
+            theFieldBall.velocityRelative.squaredNorm() >= sqr(theBehaviorParameters.goalkeeperCatchMinBallSpeed))))
         goto notCatching;
       if(state_time >= 100)
         goto doingCatch;

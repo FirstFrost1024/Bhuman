@@ -1,5 +1,7 @@
 <Simulation>
 
+  <!-- 2v2：仅 robot1、robot2（一方）与 robot21、robot22（另一方）；teams 内数字为 GC 队伍号，非场上人数 -->
+
   <Compound name="robots">
     <Body ref="Nao" name="robot1">
       <Translation x="4" y="-3" z="320mm"/>
@@ -11,22 +13,6 @@
       <Rotation z="-90degree"/>
       <Set name="TeamColor" value="black"/>
     </Body>
-    <Body ref="Nao" name="robot3">
-      <Translation x="2" y="-3" z="320mm"/>
-      <Rotation z="-90degree"/>
-      <Set name="TeamColor" value="black"/>
-    </Body>
-    <Body ref="Nao" name="robot4">
-      <Translation x="1" y="-3" z="320mm"/>
-      <Rotation z="-90degree"/>
-      <Set name="TeamColor" value="black"/>
-    </Body>
-    <Body ref="Nao" name="robot5">
-      <Translation x="0" y="-3" z="320mm"/>
-      <Rotation z="-90degree"/>
-      <Set name="TeamColor" value="black"/>
-    </Body>
-    
 
     <Body ref="Nao" name="robot21">
       <Translation x="-4" y="3" z="320mm"/>
@@ -38,22 +24,6 @@
       <Rotation z="90degree"/>
       <Set name="TeamColor" value="red"/>
     </Body>
-    <Body ref="Nao" name="robot23">
-      <Translation x="-2" y="3" z="320mm"/>
-      <Rotation z="90degree"/>
-      <Set name="TeamColor" value="red"/>
-    </Body>
-    <Body ref="Nao" name="robot24">
-      <Translation x="-1" y="3" z="320mm"/>
-      <Rotation z="90degree"/>
-      <Set name="TeamColor" value="red"/>
-    </Body>
-    <Body ref="Nao" name="robot25">
-      <Translation x="0" y="3" z="320mm"/>
-      <Rotation z="90degree"/>
-      <Set name="TeamColor" value="red"/>
-    </Body>
-    
   </Compound>
 
   <Compound name="teams">
